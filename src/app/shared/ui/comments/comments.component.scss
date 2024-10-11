@@ -1,0 +1,36 @@
+.comment{
+    background-color: #eee;
+}
+
+section .header img{
+    width: 40px;
+    height: 40px;
+}
+
+button{
+    background-color: transparent;
+}
+
+form{
+    background-color: #eee;
+}
+
+.comments{
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.modal-footer {
+
+    .btn1{
+        background-color: gray;
+        border: none;
+    }
+
+    .btn2{
+        background-color: darkgoldenrod;
+        border: none;
+    }
+
+}

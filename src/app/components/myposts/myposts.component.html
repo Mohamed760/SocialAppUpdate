@@ -1,0 +1,101 @@
+
+
+
+   <!-- post -->
+   @for (post of postList ; track post._id) {
+    <div class="bg-white p-3 rounded-2 d-flex flex-column gap-3 col-lg-6 col-md-9 mx-auto my-3 p-4 ">
+
+        <!-- header -->
+
+    <div class="d-flex justify-content-between">
+
+        <div class="header d-flex align-items-center gap-3">
+            <img class="rounded-circle" [src]="post.user.photo" alt="">
+
+            <div>
+                <h3 class="h5 m-0 fw-bold">{{post.user.name}}</h3>
+                <span class="fw-light">{{post.createdAt | date}}</span>
+            </div>    
+
+        </div>
+
+        <div class="dropdown">
+
+            <i class="fa-solid fa-ellipsis fs-4"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+
+            </i>
+          
+            <ul class="dropdown-menu">
+              <li (click)="deletePost(post._id)"><a class="dropdown-item"> <i class="fa-solid fa-trash text-danger"></i> Delete Post</a></li>
+              <li data-bs-toggle="modal" data-bs-target="#exampleModal"><a class="dropdown-item"> <i class="fa-solid fa-wrench text-warning"></i> Update Post</a></li>
+            </ul>
+        </div>
+
+        
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Your Post</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <!-- form -->
+            <form class="rounded-2 p-2">
+
+                <div class="form-floating">
+                    <textarea [(ngModel)]="content" name="content"  class="form-control w-100" placeholder="Write Your Thoughts Here..." id="floatingTextarea"></textarea>
+                    <label for="floatingTextarea" class="ms-2">Write Your Thoughts Here...</label>
+                  </div>
+
+                  <div class="input-group mb-3 mt-3">
+                    <input type="file" class="form-control" (change)="changeImage($event)" id="inputGroupFile01" accept="image/png, image/jpeg">
+                  </div>
+
+                  @if (updateMsg) {
+                    <div class="alert alert-success p-1 mt-2">
+                      <p class="text-center">{{updateMsg}}</p>
+                    </div>
+                  }
+
+            </form>   
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning text-white" (click)="updatePost(post._id)">Update Post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+        @if (post.body) {
+            <p>{{post.body}}</p>
+        }
+
+        @if (post.image) {
+            <img [src]="post.image" class="img-fluid rounded-3" alt="">
+        }
+
+
+        <button #showComments class="main-color border-0 bg-white align-self-center">ShowComments</button>
+        
+
+        @defer (  on interaction(showComments)  ) {
+        <!-- comments -->
+        <app-comments [postId]="post._id"></app-comments>
+        }
+        @loading {
+            <h5 class="text-center main-color">Loading...</h5>
+        }
+
+
+    </div>
+}

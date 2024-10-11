@@ -1,0 +1,99 @@
+<h1 class="text-center main-color mb-3">Linked Posts</h1>
+
+<form [formGroup]="registerFrom" (ngSubmit)="submitRegister()" >
+
+<div class="w-75 mx-auto bg-white p-3">
+    <h2 class="h3 main-color mb-2">Register Now</h2>
+
+    <label for="name"></label>
+    <input type="text" class="form-control w-100 mb-2" placeholder="type your name..." id="name" formControlName="name">
+    
+    @if (registerFrom.get("name")?.errors && registerFrom.get("name")?.touched) {
+        <div class="alert alert-danger m-0 p-0">
+            @if (registerFrom.get("name")?.errors?.["required"]) {
+                <p class="p-1 m-0">Name is Required</p>
+            }
+        </div>
+    }
+
+    <label for="email"></label>
+    <input type="email" class="form-control w-100 mb-2" placeholder="type your email..." id="email" formControlName="email">
+    
+    @if (registerFrom.get("email")?.errors && registerFrom.get("email")?.touched) {
+        <div class="alert alert-danger m-0 p-0">
+            @if (registerFrom.get("email")?.errors?.["required"]) {
+                <p class="p-1 m-0">Email is Required</p>
+            }
+            @if (registerFrom.get("email")?.errors?.["email"]) {
+                <p class="p-1 m-0">Enter Vaild Email</p>
+            }
+        </div>
+    }
+
+
+    <label for="password"></label>
+    <input type="password" class="form-control w-100 mb-2" placeholder="type your password..." id="password" formControlName="password">
+    
+    @if (registerFrom.get("password")?.errors && registerFrom.get("password")?.touched) {
+        <div class="alert alert-danger m-0 p-0">
+            @if (registerFrom.get("password")?.errors?.["required"]) {
+                <p class="p-1 m-0">password is Required</p>
+            }
+        </div>
+    }
+
+    <label for="rePassword"></label>
+    <input type="password" class="form-control w-100 mb-2" placeholder="type your rePassword..." id="rePassword" formControlName="rePassword">
+    
+    @if (registerFrom.get("rePassword")?.errors && registerFrom.get("rePassword")?.touched) {
+        <div class="alert alert-danger m-0 p-0">
+            @if (registerFrom.get("rePassword")?.errors?.["required"]) {
+                <p class="p-1 m-0">rePassword is Required</p>
+            }
+        </div>
+    }
+
+
+    <label for="dateOfBirth" class="fw-bold">date Of Birth:</label>
+    <input type="date" class="form-control w-100 mb-2" placeholder="Select data..." id="dateOfBirth" formControlName="dateOfBirth">
+    
+    @if (registerFrom.get("dateOfBirth")?.errors && registerFrom.get("dateOfBirth")?.touched) {
+        <div class="alert alert-danger m-0 p-0">
+            @if (registerFrom.get("dateOfBirth")?.errors?.["required"]) {
+                <p class="p-1 m-0">dateOfBirth is Required</p>
+            }
+        </div>
+    }
+
+    <!-- <label for="gender"></label>
+    <input type="text" class="form-control w-100 mb-2" placeholder="type your gender (Male or Female)..." id="name" formControlName="gender">
+    
+    @if (registerFrom.get("gender")?.errors && registerFrom.get("gender")?.touched) {
+        <div class="alert alert-danger m-0 p-0">
+            @if (registerFrom.get("gender")?.errors?.["required"]) {
+                <p class="p-1 m-0">gender is Required</p>
+            }
+        </div>
+    } -->
+
+    <div class="my-3">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="gender" type="radio" name="gender" id="male" value="female">
+            <label class="form-check-label" for="male">Male</label>
+        </div>
+
+        <div class="form-check form-check-inline ">
+            <input class="form-check-input" type="radio" formControlName="gender" name="gender" id="female" value="male">
+            <label class="form-check-label" for="female">Female</label>
+        </div>
+    </div>
+     
+
+    <button class=" btn bg-main mt-3 text-white d-block">Register</button>
+
+</div>
+
+
+
+
+</form>

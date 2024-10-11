@@ -1,0 +1,49 @@
+<h1 class="text-center main-color mb-3">Linked Posts</h1>
+
+<form class="mt-5" [formGroup]="signinFrom" (ngSubmit)="submitSignIn()">
+
+    <div class="w-75 mx-auto bg-white p-3">
+        <h2 class="h3 main-color mb-2">Login Now</h2>
+
+        <label for="email"></label>
+        <input type="email" class="form-control w-100 mb-2" placeholder="type your email..." id="email" formControlName="email">
+        
+        @if (signinFrom.get("email")?.errors && signinFrom.get("email")?.touched) {
+            <div class="alert alert-danger m-0 p-0">
+                @if (signinFrom.get("email")?.errors?.["required"]) {
+                    <p class="p-1 m-0">Email is Required</p>
+                }
+                @if (signinFrom.get("email")?.errors?.["email"]) {
+                    <p class="p-1 m-0">Enter Vaild Email</p>
+                }
+            </div>
+        }
+
+        <label for="password"></label>
+        <input type="password" class="form-control w-100 mb-2" placeholder="type your password..." id="password" formControlName="password">
+        
+        @if (signinFrom.get("password")?.errors && signinFrom.get("password")?.touched) {
+            <div class="alert alert-danger m-0 p-0">
+                @if (signinFrom.get("password")?.errors?.["required"]) {
+                    <p class="p-1 m-0">password is Required</p>
+                }
+            </div>
+        }
+
+        <button class="btn bg-main mt-3 text-white">Login</button>
+
+        <div class="">
+            <p class="mt-2">
+                <span class="text-muted">Not Registered?</span>
+                <span class="main-color ms-2 fw-bold createaccount" (click)="navigateToCreateAccount()">Create account</span>
+            </p>
+    
+            <p class="mt-2">
+                <span class="text-muted">Change Password</span>
+                <span class="main-color ms-2 fw-bold createaccount" (click)="navigateToForgetPassword()" >Click Here</span>
+            </p>
+        </div>
+    </div>
+
+</form>
+
